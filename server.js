@@ -13,6 +13,11 @@ require('./models/Post');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
+const {
+  notFound,
+  validationErrors,
+  globalErrorHandler
+} = require('./handlers/errors');
 
 const app = express();
 
@@ -44,6 +49,11 @@ mongoose
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
+
+//error handlers
+app.use(notFound);
+app.use(validationErrors);
+app.use(globalErrorHandler);
 
 app.listen(port, () => {
   console.log(`server is listening on port ${port}`);
