@@ -21,11 +21,10 @@ router.get(
   (req, res) => {
     //find the profile associated with the user
     let errors = {};
-    console.log(req.user);
     Profile.findOne({ user: req.user.id })
       .populate('user', ['name', 'avatar'])
       .then(profile => {
-        //if there is no profile, handle it with frotnned
+        //if there is no profile, handle it with frontend
         res.json(profile);
       })
       .catch(err => res.status(400).json(err));
