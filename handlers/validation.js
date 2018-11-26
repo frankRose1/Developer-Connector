@@ -211,4 +211,10 @@ validation.validatePostInput = data => {
   };
 };
 
+validation.errorResponse = errors => {
+  const err = new Error('Validation Errors');
+  err.errors = errors;
+  throw err;
+};
+
 module.exports = validation;
