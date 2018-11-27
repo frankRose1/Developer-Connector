@@ -6,7 +6,7 @@ const {
   validateExperienceInput,
   validateEducationInput,
   errorResponse
-} = require('../../handlers/validation');
+} = require('../handlers/validation');
 const createError = require('../utils/createError');
 
 const profileController = {};
