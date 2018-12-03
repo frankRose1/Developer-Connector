@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Profile = mongoose.model('Profile');
 const User = mongoose.model('User');
+const Post = mongoose.model('Post');
 const {
   validateProfileInput,
   validateExperienceInput,
@@ -204,7 +205,8 @@ profileController.deleteProfile = async (req, res) => {
   const userId = req.user.id;
   const profilePromise = Profile.findOneAndRemove({ user: userId });
   const userPromise = User.findByIdAndRemove(userId);
-  await Promise.all[(profilePromise, userPromise)];
+  const postPromise = Post.deleteMany({ user: userId });
+  await Promise.all([profilePromise, userPromise, postPromise]);
   res.json({ message: "Successfully deleted user's account." });
 };
 

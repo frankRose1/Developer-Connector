@@ -67,9 +67,8 @@ userController.loginUser = async (req, res) => {
     throw err;
   }
 
-  const payload = { id: user.id, name: user.name, avatar: user.avatar };
   jwt.sign(
-    payload,
+    { id: user.id, name: user.name, avatar: user.avatar },
     process.env.APP_SECRET,
     { expiresIn: '1h' },
     (err, token) => {
