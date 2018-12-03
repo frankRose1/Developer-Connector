@@ -37,11 +37,11 @@ validation.validateRegisterInput = data => {
   }
 
   if (validator.isEmpty(data.password2)) {
-    errors.password2 = 'Password is required.';
+    errors.password2 = 'Confirm password is required.';
   }
 
   if (!validator.equals(data.password2, data.password)) {
-    errors.password2 = 'passwords must match.';
+    errors.password2 = 'Passwords must match.';
   }
 
   return {
