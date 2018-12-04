@@ -3,6 +3,18 @@ const isEmpty = require('../utils/isEmpty');
 
 const validation = {};
 
+//check the urls for http or https
+const checkUrl = url => {
+  if (url.indexOf('http://') > -1 || url.indexOf('https://') > -1) {
+    return url;
+  } else {
+    const urlArr = url.split(' ');
+    urlArr.unshift('http://');
+    const modifiedUrl = urlArr.join('');
+    return modifiedUrl;
+  }
+};
+
 validation.validateRegisterInput = data => {
   let errors = {};
 
@@ -99,31 +111,37 @@ validation.validateProfileInput = data => {
     if (!validator.isURL(website)) {
       errors.website = 'Not a valid URL.';
     }
+    data.website = checkUrl(website);
   }
   if (!isEmpty(youtube)) {
     if (!validator.isURL(youtube)) {
       errors.youtube = 'Not a valid URL.';
     }
+    data.youtube = checkUrl(youtube);
   }
   if (!isEmpty(twitter)) {
     if (!validator.isURL(twitter)) {
       errors.twitter = 'Not a valid URL.';
     }
+    data.twitter = checkUrl(twitter);
   }
   if (!isEmpty(facebook)) {
     if (!validator.isURL(facebook)) {
       errors.facebook = 'Not a valid URL.';
     }
+    data.facebook = checkUrl(facebook);
   }
   if (!isEmpty(linkedin)) {
     if (!validator.isURL(linkedin)) {
       errors.linkedin = 'Not a valid URL.';
     }
+    data.linkedin = checkUrl(linkedin);
   }
   if (!isEmpty(instagram)) {
     if (!validator.isURL(instagram)) {
       errors.instagram = 'Not a valid URL.';
     }
+    data.instagram = checkUrl(instagram);
   }
 
   return {
